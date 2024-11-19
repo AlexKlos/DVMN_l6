@@ -2,44 +2,19 @@ import urwid
 
 
 def has_digit(password):
-    is_digit_tedected = False
-    for char in password:
-        if char.isdigit():
-            is_digit_tedected = True
-            break
-    return is_digit_tedected
+    return any(char.isdigit() for char in password)
 
 def has_letters(password):
-    is_letter_detected = False
-    for char in password:
-        if char.isalpha():
-            is_letter_detected = True
-            break
-    return is_letter_detected
+    return any(char.isalpha() for char in password)
 
 def has_upper_letters(password):
-    is_upper_letter_detected = False
-    for char in password:
-        if char.isupper():
-            is_upper_letter_detected = True
-            break
-    return is_upper_letter_detected
+    return any(char.isupper() for char in password)
 
 def has_lower_letters(password):
-    is_lower_letter_detected = False
-    for char in password:
-        if char.islower():
-            is_lower_letter_detected = True
-            break
-    return is_lower_letter_detected
+    return any(char.islower() for char in password)
 
 def has_symbols(password):
-    is_symbols_detected = False
-    for char in password:
-        if not char.isdigit() and not char.isalpha():
-            is_symbols_detected = True
-            break
-    return is_symbols_detected
+    return any(not char.isdigit() and not char.isalpha() for char in password)
 
 def is_very_long(password):
     return len(password) > 12
@@ -47,12 +22,12 @@ def is_very_long(password):
 def password_rate(password):
     score = 0
     functions_list = (
-                      has_digit,
-                      has_letters,
-                      has_lower_letters,
-                      has_upper_letters,
-                      has_symbols,
-                      is_very_long
+        has_digit,
+        has_letters,
+        has_lower_letters,
+        has_upper_letters,
+        has_symbols,
+        is_very_long
     )
     for function in functions_list:
         if function(password):
